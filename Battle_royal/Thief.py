@@ -12,4 +12,4 @@ class Thief(Player.Player):
         self.defense = 5
         self.health = 75
         self.name = name
-        self.bonus = [["Heal", "health", 20], ["Flash hit", "speed", 2]]
+        self.bonus = [["Heal", "health", 20], ["Flash hit", "speed", 2], ["EMOTIONAL DAMAGE", "health", -50]]

@@ -20,6 +20,9 @@ class Jeu:
         while index1 == index2:
             index2 = random.randint(0, len(self.players) - 1)
 
+        if index1 < index2:
+            index1, index2 = index2, index1
+
         return (self.players[index1], index1), (self.players[index2], index2)
 
     def randomPlayer(self, playerName):
@@ -41,10 +44,11 @@ class Jeu:
                  "Johnvell", "Bethsyl", "Bardfast", "Fridly", "Laclaf", "Nassa", "Comesajo", "Joansan", "Edmond",
                  "Casdon",
                  "Sig'ly", "Cuthriret", "Ferumto", "Elidryt", "Do", "Lestim", "Ferumrobris", "Easter", "Egg", "Robert",
-                 "Valentin", "Clara", "Clarel", "Elodie", "Mickael"]
+                 "Valentin", "Clara", "Clarel", "Elodie", "Mickael", "Toto"]
 
         # Create players
         for i in range(self.nb_players):
+            print(names[i])
             self.players[i] = self.randomPlayer(names[i])
 
         # Run till one player left
@@ -66,13 +70,22 @@ class Jeu:
             if first.health <= 0:
                 self.players.pop(index1)
                 self.nb_players -= 1
+                print(str(self.nb_players) + " left")
+            if second.health <= 0:
+                self.players.pop(index2)
+                self.nb_players -= 1
+                print(str(self.nb_players) + " left")
 
             # Remove dead players.
-        print(self.players[0].name + " ( " + self.players[0].class_name + " ) wins !")
+        if self.nb_players == 0:
+            print("\nEveryone died :/")
+        else:
+            print("\n" + self.players[0].name + " ( " + self.players[0].class_name + " ) wins !")
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    print("Welcome to Sweet Justice battle royal!\n")
     while True:
         print("Enter a number of players between 2 and 50: ")
         while True:
@@ -83,7 +96,7 @@ if __name__ == '__main__':
         jeu = Jeu(nb_players)
         jeu.start()
 
-        print("Restart game ? (Yes or No)")
+        print("\nRestart game ? (Yes or No)")
         restart = input()
         if restart == "No":
             print("Bye Bye")

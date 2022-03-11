@@ -43,15 +43,20 @@ class Player:
             if self.health <= 0:
                 print(self.name + " is dead")
                 bon = random.choice(self.bonus)
+                print(adversary.name + " gets " + bon[0] + " : " + str(bon[2]) + " " + bon[1])
                 if bon[1] == "health":
                     adversary.health += bon[2]
+                    if adversary.health <= 0:
+                        print(adversary.name + " is dead")
                 elif bon[1] == "speed":
                     adversary.speed += bon[2]
                 elif bon[1] == "defense":
                     adversary.defense += bon[2]
                 elif bon[1] == "damage":
                     adversary.damage += bon[2]
-                print(adversary.name + " gets " + bon[0] + " : " + str(bon[2]) + " " + bon[1])
+                    if adversary.damage < 0:
+                        adversary.damage = 0
+
             print(self.name + " ( " + self.class_name + " ) lost " + str(adversary.damage) + " life points.")
         else:
             print(self.name + " ( " + self.class_name + " ) does not take any dammages.")
