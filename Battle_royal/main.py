@@ -27,7 +27,6 @@ def randomPlayer(playerName):
     return random.choice(list(player_types.items()))[1](playerName)
 
 def main():
-    # TODO modify
     names = {"Dodchard", "Redan", "Edjoan", "Lassan", "Nyacas", "Samarma", "Tachet", "Jashabryt", "Daha", "Risroy",
              "Chetvia", "Maroy", "Leofven", "Ald", "Damas", "Dod", "Barchet", "Isenphia", "Lasbar", "Thorke",
              "Bardbald", "Wig-sara", "Mark-egar", "Bur-ceol", "Roneadbryt", "Velldocpa", "Tonchrisbard", "Renferwen",
