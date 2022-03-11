@@ -6,6 +6,14 @@ from Warrior import Thief
 from Warrior import Tank
 from Warrior import Archer
 
+def choose_two_player(players):
+    index1 = random.randint(len(players))
+    index2 = random.randint(len(players))
+
+    while (index1 == index2):
+        index2 = random.randint(len(players))
+
+    return (players[index1], index1), (players[index2], index2)
 # Instantiate a player by picking randomly its type.
 def randomPlayer(playerName):
     player_types = {
@@ -28,7 +36,7 @@ def main():
              "Johnvell", "Bethsyl", "Bardfast", "Fridly", "Laclaf", "Nassa", "Comesajo", "Joansan", "Edmond", "Casdon",
              "Sig'ly", "Cuthriret", "Ferumto", "Elidryt", "Do", "Lestim", "Ferumrobris", "Easter", "Egg", "Robert",
              "Valentin", "Clara", "Clarel", "Elodie", "Mickael"}
-    
+
     nb_players = 50
     players = []
 
