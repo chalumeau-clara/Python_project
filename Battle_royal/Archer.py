@@ -4,10 +4,8 @@ import random
 
 class Archer(Player.Player):
     def __init__(self, name):
+        self.list = [("Destructive Arrow", 60), ("Devouring Arrow", 80),("Explosive Arrow", 70),("Burning Arrow", 60),("Punitive Arrow", 65), ("Abolition Arrow", 100)]
         self.class_name = "Archer"
-        # archer_spells = [("Destructive Arrow", 60), ("Devouring Arrow", 80), ("Explosive Arrow", 20),
-        # ("Burning Arrow", 10), ("Punitive Arrow", 10), ("Abolition Arrow", 120)]
-        # self.name_attack, self.damage = random.choice()
         self.name_attack = "Destructive Arrow"
         self.damage = 70
         self.speed = 9

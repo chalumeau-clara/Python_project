@@ -3,6 +3,7 @@ import random
 
 class Player:
     def __init__(self, name):
+        self.list = None
         self.name = name
         self.class_name = None
         self.name_attack = None
@@ -12,7 +13,8 @@ class Player:
         self.health = None
 
     def attack(self, adversary):
-        print(self.name + " ( " + self.class_name + " ) utilise " + self.name_attack + " sur " + adversary.class_name)
+        (self.name_attack, self.damage) = random.choice(self.list)
+        print(self.name + " ( " + self.class_name + " ) utilise " + self.name_attack + " sur " + adversary.name + " ( " + adversary.class_name + " )")
 
     def take_damage(self, adversary_damage):
         list = []

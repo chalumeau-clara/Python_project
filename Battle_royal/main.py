@@ -34,7 +34,7 @@ def main():
              "Sig'ly", "Cuthriret", "Ferumto", "Elidryt", "Do", "Lestim", "Ferumrobris", "Easter", "Egg", "Robert",
              "Valentin", "Clara", "Clarel", "Elodie", "Mickael"]
 
-    nb_players = 5
+    nb_players = 3
     players = [None for i in range(nb_players)]
 
     # Create players
