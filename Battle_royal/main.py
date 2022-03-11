@@ -7,63 +7,84 @@ import Tank
 import Archer
 
 
-def choose_two_players(players):
-    index1 = random.randint(0, len(players) - 1)
-    index2 = random.randint(0, len(players) - 1)
+class Jeu:
 
-    while index1 == index2:
-        index2 = random.randint(0, len(players)- 1)
+    def __init__(self, nb_players):
+        self.nb_players = nb_players
+        self.players = [None for i in range(self.nb_players)]
 
-    return (players[index1], index1), (players[index2], index2)
+    def choose_two_players(self):
+        index1 = random.randint(0, len(self.players) - 1)
+        index2 = random.randint(0, len(self.players) - 1)
 
+        while index1 == index2:
+            index2 = random.randint(0, len(self.players) - 1)
 
-# Instantiate a player by picking randomly its type.
-def randomPlayer(playerName):
-    player_types = [Warrior.Warrior, Mage.Mage, Thief.Thief, Tank.Tank, Archer.Archer]
+        return (self.players[index1], index1), (self.players[index2], index2)
 
-    return random.choice(player_types)(playerName)
+    def randomPlayer(self, playerName):
+        """
+        Instantiate a player by picking randomly its type.
+        :param playerName:
+        :return:
+        """
+        player_types = [Warrior.Warrior, Mage.Mage, Thief.Thief, Tank.Tank, Archer.Archer]
+        return random.choice(player_types)(playerName)
 
+    def start(self):
+        names = ["Dodchard", "Redan", "Edjoan", "Lassan", "Nyacas", "Samarma", "Tachet", "Jashabryt", "Daha", "Risroy",
+                 "Chetvia", "Maroy", "Leofven", "Ald", "Damas", "Dod", "Barchet", "Isenphia", "Lasbar", "Thorke",
+                 "Bardbald", "Wig-sara", "Mark-egar", "Bur-ceol", "Roneadbryt", "Velldocpa", "Tonchrisbard",
+                 "Renferwen",
+                 "Laf-guth", "Mondmasmark", "Vid-da", "Carbethord", "Barddonmenjack", "Eapherbeth", "Saraacardic",
+                 "Cachell", "Chel'ra", "Anseredo", "Beorthconjo", "Charcomeard", "Annecia", "Fortinrob", "Gormaleofu",
+                 "Johnvell", "Bethsyl", "Bardfast", "Fridly", "Laclaf", "Nassa", "Comesajo", "Joansan", "Edmond",
+                 "Casdon",
+                 "Sig'ly", "Cuthriret", "Ferumto", "Elidryt", "Do", "Lestim", "Ferumrobris", "Easter", "Egg", "Robert",
+                 "Valentin", "Clara", "Clarel", "Elodie", "Mickael"]
 
-def main():
-    names = ["Dodchard", "Redan", "Edjoan", "Lassan", "Nyacas", "Samarma", "Tachet", "Jashabryt", "Daha", "Risroy",
-             "Chetvia", "Maroy", "Leofven", "Ald", "Damas", "Dod", "Barchet", "Isenphia", "Lasbar", "Thorke",
-             "Bardbald", "Wig-sara", "Mark-egar", "Bur-ceol", "Roneadbryt", "Velldocpa", "Tonchrisbard", "Renferwen",
-             "Laf-guth", "Mondmasmark", "Vid-da", "Carbethord", "Barddonmenjack", "Eapherbeth", "Saraacardic",
-             "Cachell", "Chel'ra", "Anseredo", "Beorthconjo", "Charcomeard", "Annecia", "Fortinrob", "Gormaleofu",
-             "Johnvell", "Bethsyl", "Bardfast", "Fridly", "Laclaf", "Nassa", "Comesajo", "Joansan", "Edmond", "Casdon",
-             "Sig'ly", "Cuthriret", "Ferumto", "Elidryt", "Do", "Lestim", "Ferumrobris", "Easter", "Egg", "Robert",
-             "Valentin", "Clara", "Clarel", "Elodie", "Mickael"]
+        # Create players
+        for i in range(self.nb_players):
+            self.players[i] = self.randomPlayer(names[i])
 
-    nb_players = 3
-    players = [None for i in range(nb_players)]
+        # Run till one player left
+        while self.nb_players > 1:
+            # Picks two random players and returns first player to start and second
+            (first, index1), (second, index2) = self.choose_two_players()
 
-    # Create players
-    for i in range(nb_players):
-        players[i] = randomPlayer(names[i])
+            first.attack(second)
+            second.take_damage(first)
 
-    # Run till one player left
-    while nb_players > 1:
-        # Picks two random players and returns first player to start and second
-        (first, index1), (second, index2) = choose_two_players(players)
+            # Come back from player 2
+            if second.health > 0:
+                second.attack(first)
+                first.take_damage(second)
+            else:
+                self.players.pop(index2)
+                self.nb_players -= 1
 
-        first.attack(second)
-        second.take_damage(first.damage)
+            if first.health <= 0:
+                self.players.pop(index1)
+                self.nb_players -= 1
 
-        # Come back from player 2
-        if second.health > 0:
-            second.attack(first)
-            first.take_damage(second.damage)
-        else:
-            players.pop(index2)
-            nb_players -= 1
+            # Remove dead players.
+        print(self.players[0].name + " ( " + self.players[0].class_name + " ) wins !")
 
-        if first.health <= 0:
-            players.pop(index1)
-            nb_players -= 1
-
-        # Remove dead players.
-    print(players[0].name + " ( " + players[0].name + " ) wins !")
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    main()
+    while True:
+        print("Enter a number of players between 2 and 50: ")
+        while True:
+            nb_players = int(input())
+            if 2 <= nb_players <= 50:
+                break
+            print("Is not between 2 and 50 ! Please enter a number again")
+        jeu = Jeu(nb_players)
+        jeu.start()
+
+        print("Restart game ? (Yes or No)")
+        restart = input()
+        if restart == "No":
+            print("Bye Bye")
+            break
