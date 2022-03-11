@@ -1,10 +1,10 @@
 import random
-
-from Warrior import Warrior
-from Warrior import Mage
-from Warrior import Thief
-from Warrior import Tank
-from Warrior import Archer
+import Player
+import Warrior
+import Mage
+import Thief
+import Tank
+import Archer
 
 def choose_two_player(players):
     index1 = random.randint(len(players))
@@ -47,7 +47,7 @@ def main():
     # Run till one player left
     while nb_players > 1:
         # Picks two random players and returns first player to start and second
-        (first, index1), (second, index2) = choose_two_players(players)
+        (first, index1), (second, index2) = choose_two_player(players)
 
         first.attack(second)
         second.take_damage(first.damage)
