@@ -36,6 +36,6 @@ and launches the game.
 Each time a player is killed, he is removed from the players list.
 The game continues until there's only one player left.
 
-All you need to do is use the command "python3 main.py" to launch the game.
+All you need to do is enter the Battle_Royal directory and use the command "python3 main.py" to launch the game.
 
 Enjoy!
