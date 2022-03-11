@@ -3,7 +3,7 @@ import Player
 
 class Tank(Player.Player):
     def __init__(self, name):
-        self.class_name = "Tank"
+        self.class_name = "Paladin"
         self.name_attack = "Absorption"
         self.damage = 25
         self.speed = 1

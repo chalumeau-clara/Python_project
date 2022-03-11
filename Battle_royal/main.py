@@ -62,7 +62,7 @@ def main():
             nb_players -= 1
 
         # Remove dead players.
-    print(players[0].name + " ( " + players[0].name + " ) Wins !")
+    print(players[0].name + " ( " + players[0].name + " ) wins !")
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':

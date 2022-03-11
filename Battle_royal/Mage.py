@@ -3,7 +3,7 @@ import Player
 
 class Mage(Player.Player):
     def __init__(self, name):
-        self.class_name = "Mage"
+        self.class_name = "Wizard"
         self.name_attack = "Fire spell"
         self.damage = 40
         self.speed = 3

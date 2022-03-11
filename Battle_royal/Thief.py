@@ -3,7 +3,7 @@ import Player
 
 class Thief(Player.Player):
     def __init__(self, name):
-        self.class_name = "Thief"
+        self.class_name = "Voleur"
         self.name_attack = "Furia"
         self.damage = 70
         self.speed = 10
