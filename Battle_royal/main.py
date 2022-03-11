@@ -1,12 +1,12 @@
 import random
 
-from Warrior import Warrior
-from Warrior import Mage
-from Warrior import Thief
-from Warrior import Tank
-from Warrior import Archer
+import Warrior
+import Mage
+import Thief
+import Tank
+import Archer
 
-def choose_two_player(players):
+def choose_two_players(players):
     index1 = random.randint(len(players))
     index2 = random.randint(len(players))
 
